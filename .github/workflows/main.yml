@@ -1,21 +1,12 @@
-name: Node CI
+name: test
 
 on:
   - push
-  - pull_request
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [26.x]
-
     steps:
-      - uses: actions/checkout@v7
-
-      - uses: jdx/mise-action@v5
-      # BEGIN
-      # Set the project up, run the linter and run the tests.
-      # END
+     - run: make setup
+     - run: make lint
+     - run: make test
